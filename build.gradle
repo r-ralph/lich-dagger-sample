@@ -1,0 +1,41 @@
+buildscript {
+    ext.versions = [
+        compileSdk              : 29,
+        minSdk                  : 14,
+        targetSdk               : 28,
+        kotlin                  : '1.3.61',
+        kotlinCoroutines        : '1.3.2',
+        androidxAppcompat       : '1.1.0',
+        androidxConstraintlayout: '1.1.3',
+        androidxLifecycle       : '2.2.0-rc03',
+        androidxRoom            : '2.2.2',
+        androidxTestRunner      : '1.2.0',
+        androidxTestJunit       : '1.1.1',
+        androidxTestEspresso    : '3.2.0',
+        lichComponent           : '2.1.0',
+        lichViewmodel           : '2.0.0-rc1',
+        autoService             : '1.0-rc6',
+        dagger                  : '2.25.2',
+        mockk                   : '1.9.3',
+        robolectric             : '4.3',
+    ]
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
