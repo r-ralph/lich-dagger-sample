@@ -15,17 +15,10 @@
  */
 package com.linecorp.lich.dagger_sample.remote
 
-import android.content.Context
-import com.linecorp.lich.component.ComponentFactory
 import java.io.IOException
 
 interface CounterServiceClient {
 
     @Throws(IOException::class)
     suspend fun getInitialCounterValue(counterName: String): Int
-
-    companion object : ComponentFactory<CounterServiceClient>() {
-        override fun createComponent(context: Context): CounterServiceClient =
-            FakeCounterServiceClient()
-    }
 }

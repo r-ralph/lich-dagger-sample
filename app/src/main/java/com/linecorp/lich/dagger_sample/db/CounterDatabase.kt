@@ -15,20 +15,12 @@
  */
 package com.linecorp.lich.dagger_sample.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.linecorp.lich.component.ComponentFactory
 import com.linecorp.lich.dagger_sample.entity.Counter
 
 @Database(entities = [Counter::class], version = 1)
 abstract class CounterDatabase : RoomDatabase() {
 
     abstract val counterDao: CounterDao
-
-    companion object : ComponentFactory<CounterDatabase>() {
-        override fun createComponent(context: Context): CounterDatabase =
-            Room.databaseBuilder(context, CounterDatabase::class.java, "counter").build()
-    }
 }
