@@ -13,6 +13,8 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 interface ApplicationGraph {
 
+    fun applicationContext(): Context
+
     fun viewModelsGraphFactory(): AppViewModelsGraph.Factory
 
     @Component.Factory
