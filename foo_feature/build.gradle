@@ -1,0 +1,40 @@
+apply plugin: 'com.android.dynamic-feature'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation project(':app')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlinCoroutines}"
+    implementation "androidx.appcompat:appcompat:${versions.androidxAppcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.androidxConstraintlayout}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.androidxLifecycle}"
+    implementation "com.linecorp.lich:component:${versions.lichComponent}"
+    implementation "com.linecorp.lich:viewmodel:${versions.lichViewmodel}"
+    kapt "com.linecorp.lich:viewmodel-compiler:${versions.lichViewmodel}"
+    compileOnly "com.google.auto.service:auto-service-annotations:${versions.autoService}"
+    kapt "com.google.auto.service:auto-service:${versions.autoService}"
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+}

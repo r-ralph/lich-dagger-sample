@@ -17,10 +17,15 @@ package com.linecorp.lich.dagger_sample
 
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.linecorp.lich.component.component
+import com.linecorp.lich.dagger_sample.foo_feature.FooFeatureFacade
 import com.linecorp.lich.dagger_sample.mvvm.MvvmSampleActivity
 
 class MainActivity : AppCompatActivity() {
+
+    private val fooFeatureFacade by component(FooFeatureFacade)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,5 +34,11 @@ class MainActivity : AppCompatActivity() {
 
     fun launchMvvmSampleActivity(@Suppress("UNUSED_PARAMETER") view: View) {
         startActivity(MvvmSampleActivity.newIntent(this, "mvvm"))
+    }
+
+    fun launchFooFeatureActivity(@Suppress("UNUSED_PARAMETER") view: View) {
+        val messageText = findViewById<EditText>(R.id.message_for_foo)
+        val message = messageText?.text?.toString() ?: ""
+        fooFeatureFacade.launchFooFeatureActivity(message)
     }
 }

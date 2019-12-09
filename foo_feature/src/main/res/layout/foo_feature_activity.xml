@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".FooFeatureActivity">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.linecorp.lich.dagger_sample.foo_feature.FooViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/message_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/message_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@{viewModel.activityMessage}"
+            app:layout_constraintStart_toEndOf="@id/message_title"
+            app:layout_constraintTop_toTopOf="@id/message_title"
+            tools:text="viewModel.activityMessage" />
+
+        <TextView
+            android:id="@+id/repository_data_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/repository_data_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_title" />
+
+        <TextView
+            android:id="@+id/repository_data_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@{viewModel.repositoryData}"
+            app:layout_constraintStart_toEndOf="@id/repository_data_title"
+            app:layout_constraintTop_toTopOf="@id/repository_data_title"
+            tools:text="viewModel.repositoryData" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

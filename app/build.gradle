@@ -49,6 +49,8 @@ android {
         exclude '**/*.kotlin_builtins'
         exclude '**/*.kotlin_metadata'
     }
+
+    dynamicFeatures = [":foo_feature"]
 }
 
 dependencies {

@@ -1,0 +1,5 @@
+<resources>
+    <string name="message_title">Message:</string>
+    <string name="repository_data_title">FooData:</string>
+    <string name="foo_data">I am FooRepository.</string>
+</resources>
