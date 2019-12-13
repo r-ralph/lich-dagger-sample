@@ -17,7 +17,11 @@ package com.linecorp.lich.dagger_sample.mvvm
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
+import com.linecorp.lich.dagger_sample.app.FeatureFlag
 import com.linecorp.lich.dagger_sample.entity.Counter
+import com.linecorp.lich.dagger_sample.mvvm.stepper.CounterValueStepper
+import com.linecorp.lich.dagger_sample.mvvm.stepper.DoubleUpCounterValueStepper
+import com.linecorp.lich.dagger_sample.mvvm.stepper.SingleUpCounterValueStepper
 import com.linecorp.lich.dagger_sample.repository.CounterRepository
 import com.linecorp.lich.dagger_sample.repository.CounterResult
 import javax.inject.Inject
@@ -29,6 +33,12 @@ class CounterUseCase @Inject constructor(
     val liveCounter: MutableLiveData<Counter?> = MutableLiveData(null)
 
     val isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    private val stepper: CounterValueStepper = if (FeatureFlag.DOUBLE_UP_COUNTER) {
+        DoubleUpCounterValueStepper()
+    } else {
+        SingleUpCounterValueStepper()
+    }
 
     suspend fun loadCounter(counterName: String) {
         isLoading.value = true
@@ -47,7 +57,7 @@ class CounterUseCase @Inject constructor(
 
     suspend fun changeCounterValue(delta: Int) {
         liveCounter.value?.let { counter ->
-            val newCounter = counter.copy(value = counter.value + delta)
+            val newCounter = counter.copy(value = stepper.calculate(counter.value, delta))
             liveCounter.value = newCounter
             counterRepository.storeCounter(newCounter)
         }

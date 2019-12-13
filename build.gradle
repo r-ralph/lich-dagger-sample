@@ -2,10 +2,12 @@ buildscript {
     repositories {
         google()
         jcenter()
+        gradlePluginPortal()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.5.3"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlin}"
+        classpath "gradle.plugin.com.linecorp.android:feature-flag:2.0.0"
     }
 }
 

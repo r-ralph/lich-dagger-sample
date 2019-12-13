@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="com.linecorp.lich.dagger_sample.app.FeatureFlag" />
+
         <variable
             name="viewModel"
             type="com.linecorp.lich.dagger_sample.mvvm.SampleViewModel" />
@@ -17,6 +19,28 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/feature_double_up_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/feature_double_up_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/feature_double_up_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@{Boolean.toString(FeatureFlag.DOUBLE_UP_COUNTER)}"
+            app:layout_constraintStart_toEndOf="@id/feature_double_up_title"
+            app:layout_constraintTop_toTopOf="@id/feature_double_up_title"
+            tools:text="true/false" />
+
+        <TextView
             android:id="@+id/counter_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +49,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/counter_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/feature_double_up_title" />
 
         <TextView
             android:id="@+id/counter_value"

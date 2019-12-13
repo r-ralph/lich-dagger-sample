@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.linecorp.android.feature-flag")
     id("kotlin-android")
     id("kotlin-kapt")
 }
@@ -53,6 +54,16 @@ kapt {
     arguments {
         arg("room.schemaLocation", "$projectDir/schemas")
     }
+}
+
+featureFlag {
+    sourceFile = file("FEATURE_FLAG")
+    packageName = "com.linecorp.lich.dagger_sample.app"
+    phases = mapOf(
+        "DEBUG" to setOf(buildType("debug")),
+        "RELEASE" to setOf(buildType("debug"), buildType("release"))
+    )
+    releasePhaseSet = setOf(buildType("release"))
 }
 
 dependencies {
